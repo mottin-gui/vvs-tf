@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Trabalho Final - Guilherme Mottin</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+    <div th:switch="${carro}">
+        <h2 th:case="null">Carro não encontrado</h2>
+            <div th:case="*">
+                <h2>Carro</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Modelo</th>
+                            <th>Fabricante</th>
+                            <th>Cor</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <td th:text="${carro.modelo}"></td>
+                        <td th:text="${carro.fabricante}"></td>
+                        <td th:text="${carro.cor}"></td>
+                     <!--   <td><a th:href="@{/edit/{id}(id=${user.id})}">Atualizar</a></td>
+                        <td><a th:href="@{/delete/{id}(id=${user.id})}">Deletar</a></td>
+                    --> 
+                    </tr>
+                </tbody>
+            </table>
+        </div>      
+        <p><a href="/api/carros">Voltar ao início</a></p>
+    </div>
+</body>
+</html>

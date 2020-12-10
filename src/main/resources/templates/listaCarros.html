@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+    <h2>Carros</h2>
+    <div th:switch="${carros}">
+        <h2 th:case="${#lists.isEmpty(carros)}">Não há carros cadastrados</h2>
+            <div th:case="*">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Modelo</th>
+                            <th>Fabricante</th>
+                            <th>Cor</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="carro : ${carros}">
+                        <td th:text="${carro.id}"></td>
+                        <td th:text="${carro.modelo}"></td>
+                        <td th:text="${carro.fabricante}"></td>
+                        <td th:text="${carro.cor}"></td>
+                        <td><a th:href="@{/api/formAlteraCarro/{id}(id=${carro.id})}">Atualizar</a></td>
+                        <td>
+                            <form th:action="@{|/api/carro/${carro.id}|}" th:method="delete">
+                                <button type="submit" value="Submit" class="btn btn-danger">Delete</button>
+                             </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>      
+        <p><a href="/api/formAdicionaCarro">Adicionar novo carro</a></p>
+    </div>
+</body>
+</html>

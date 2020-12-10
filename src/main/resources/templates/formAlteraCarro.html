@@ -1,0 +1,16 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Alterar carro</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>Form Alterar Carro</h1>
+    <form th:action="@{|/api/atualizaCarro/${id}|}" th:object="${carro}" th:method="put">
+    	<p>Modelo: <input type="text" th:field="*{modelo}" /></p>
+        <p>Fabricante: <input type="text" th:field="*{fabricante}" /></p>
+        <p>Cor: <input type="text" th:field="*{cor}" /></p>
+        <p><input type="submit" value="Alterar" /> <input type="reset" value="Limpar" /></p>
+    </form>
+</body>
+</html>
