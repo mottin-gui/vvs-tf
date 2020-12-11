@@ -13,6 +13,6 @@ install:
 - sudo chmod +x /usr/local/share/geckodriver
 - sudo ln -s /usr/local/share/geckodriver /usr/local/bin/geckodriver
 script:
-- timeout 3m mvn spring-boot:run | mvn verify
+- mvn clean verify
 
 

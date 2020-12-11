@@ -6,6 +6,10 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.boot.test.context.SpringBootTest;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -15,7 +19,14 @@ import org.openqa.selenium.firefox.FirefoxDriver;
  * Classe que implementa o teste funcional, 
  * gravada e extraído da ferramenta Selenium
  */
+@SpringBootTest(classes = TrabalhofinalApplication.class, webEnvironment = WebEnvironment.RANDOM_PORT)
 public class FuncionalTest {
+
+    /**
+     * Porta em que o Sistema Carros ficará disponível
+     */
+    @LocalServerPort
+    private int porta;
 
   /**
    * Driver para realizar a navegação por código.
@@ -53,7 +64,7 @@ public class FuncionalTest {
   */
   @Test
   public void testeFuncional() {
-    driver.get("http://127.0.0.1:8080/api/carros");
+    driver.get("http://127.0.0.1:"+porta+"/api/carros");
     assertThat(driver.findElement(By.cssSelector("h2")).getText(), is("Carros"));
     driver.findElement(By.linkText("Adicionar novo carro")).click();
     driver.findElement(By.id("modelo")).click();
